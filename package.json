@@ -9,7 +9,13 @@
     "start": "node dist/index.js",
     "start2": "ts-node src/index.ts",
     "dev2": "nodemon --exec ts-node src/index.ts",
-    "create:migration": "typeorm migration:generate"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/type-orm.config.ts",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./src/type-orm.config.ts",
+    "schema:sync": "npm run typeorm schema:sync -- -d ./src/type-orm.config.ts",
+    "migration:show": "npm run typeorm migration:show -- -d ./src/type-orm.config.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -d src/type-orm.config.ts",
+    "migration:create": "npm run typeorm migration:create"
   },
   "keywords": [],
   "author": "",

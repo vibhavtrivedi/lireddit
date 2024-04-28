@@ -1,7 +1,5 @@
 import { DataSource } from "typeorm";
 import path from "path";
-import { Post } from "./entities/post.entity";
-import { User } from "./entities/user.entity";
 
   //Configuration of typeORM
   export const AppDataSource = new DataSource({
@@ -12,9 +10,9 @@ import { User } from "./entities/user.entity";
     username: "postgres",
     password: "V!bhav@24",
     database: "lireddit",
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: [Post, User],
-    migrations: [path.join(__dirname, "./migrations/*")],
+    entities: [path.join(__dirname, "./entities/**/*.ts")],
+    migrations: [path.join(__dirname, "./migration/**/*.js")],
     subscribers: [],
   });
