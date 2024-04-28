@@ -8,7 +8,6 @@ import {
   Resolver,
 } from "type-graphql";
 import * as argon2 from "argon2";
-import { error } from "console";
 
 @InputType()
 class UserNamePasswordInput {
@@ -63,10 +62,27 @@ export class UserResolver {
       };
     }
     const hashedPassword = await argon2.hash(options.password);
-    const user = await User.create({
+    console.log('----------------I am here-----');
+    const user = User.create({
       username: options.username,
       password: hashedPassword,
-    }).save();
+    })
+    try {
+      await user.save()
+    }
+    catch (err) {
+      if (err.code === "23505" || err.detail.includes("already exists")) {
+        return {
+          errors: [
+            {
+              field: "Username",
+              message : "Filed name already taken"
+            }
+          ]
+        }
+      }
+      console.log("message", err.message)
+    }
     return { user };
   }
 

@@ -17,24 +17,6 @@ const main = async () => {
     console.log("__dirname__dirname__dirname", __dirname);
     await AppDataSource.initialize();
     console.log("Data source initialized successfully.");
-
-    // Create and save a new photo
-    // const photo = new PhotoType();
-    // photo.name = "Me and Bears";
-    // photo.description = "I am near polar bears";
-    // photo.filename = "photo-with-bears.jpg";
-    // photo.views = 1;
-    // photo.isPublished = true;
-
-
-    //Create a post
-    // const user = new User();
-    // // console.log("-------------post", post);
-    // // post.title = "Vibs title"
-    // user.username = "vib";
-    // user.password = "vib";
-    // await AppDataSource.manager.save(user);
-    // console.log("Post has been saved. Photo id is", post.id);
   } catch (error) {
     console.error("Error initializing data source:", error);
   }

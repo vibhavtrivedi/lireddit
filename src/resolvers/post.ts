@@ -8,9 +8,15 @@ export class PostResolver {
     return Post.find();
   }
 
+  
   @Query(() => Post, { nullable: true })
-  post(@Arg("id") id: number): Promise<Post | null> {
-    return Post.findOne({ where: { id: id } });return Post.findOne({ where: { id: id } });
+  async post(@Arg("id") id: number): Promise<Post | null> {
+    // return AppDataSource.getRepository(Post)
+    //   .createQueryBuilder("post")
+    //   .where("post.id = :id")
+    //   .getOne();
+    
+    return Post.findOne({ where: { id: id } });
   }
 
   @Mutation(() => Post)
@@ -18,21 +24,21 @@ export class PostResolver {
     return Post.create({ title }).save();
   }
 
-//   @Mutation(() => Post, { nullable: true })
-//   async updatePost(
-//     @Arg("id", () => Int) id: number,
-//     @Arg("title", { nullable: true }) title: string
-//   ): Promise<Post | null> {
-//     //   const result = AppDataSource
-//     //       .createQueryBuilder()
-//     //       .update(Post)
-//     //       .set({ title })
-//     //       .where('id=:id', {
-//     //           id: id
-//     //       }).execute();
+  //   @Mutation(() => Post, { nullable: true })
+  //   async updatePost(
+  //     @Arg("id", () => Int) id: number,
+  //     @Arg("title", { nullable: true }) title: string
+  //   ): Promise<Post | null> {
+  //     //   const result = AppDataSource
+  //     //       .createQueryBuilder()
+  //     //       .update(Post)
+  //     //       .set({ title })
+  //     //       .where('id=:id', {
+  //     //           id: id
+  //     //       }).execute();
 
-//     return null;
-//   }
+  //     return null;
+  //   }
 
   @Mutation(() => Boolean)
   async deletePost(@Arg("id", () => Int) id: number): Promise<boolean | null> {
