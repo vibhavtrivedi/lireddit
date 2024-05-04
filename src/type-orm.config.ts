@@ -12,7 +12,7 @@ import path from "path";
     database: "lireddit",
     synchronize: false,
     logging: true,
-    entities: [path.join(__dirname, "./entities/**/*.ts")],
-    migrations: [path.join(__dirname, "./migration/**/*.js")],
+    entities: [path.join(__dirname, "./entities/**/*.{js,ts}")],
+    migrations: [path.join(__dirname, "./migration/**/*.{js,ts}")],
     subscribers: [],
   });
